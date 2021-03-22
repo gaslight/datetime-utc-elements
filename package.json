@@ -1,0 +1,29 @@
+{
+  "name": "datetime-utc-elements",
+  "version": "0.0.1",
+  "description": "UTC on the server. Local time on the browser. Time is relative",
+  "author": "Chris Nelson",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "start": "web-dev-server",
+    "test": "web-test-runner \"test/*.spec.js\" --puppeteer",
+    "test:watch": "web-test-runner --watch",
+    "storybook": "web-dev-server -c .storybook/server.mjs",
+    "storybook:build": "build-storybook"
+  },
+  "dependencies": {
+    "date-fns": "^2.19.0",
+    "date-fns-tz": "^1.1.3",
+    "lit-element": "^2.4.0",
+    "lit-html": "^1.3.0"
+  },
+  "devDependencies": {
+    "@open-wc/testing": "^2.5.32",
+    "@web/dev-server": "^0.1.8",
+    "@web/dev-server-storybook": "^0.3.5",
+    "@web/test-runner": "^0.12.17",
+    "@web/test-runner-puppeteer": "^0.9.3"
+  }
+}
