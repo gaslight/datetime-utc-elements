@@ -4,6 +4,18 @@ import { parseISO } from 'date-fns';
 
 
 export class DateTimeUTCInput extends LitElement {
+  static get formAssociated() {
+    return true;
+  }
+
+  static get properties() {
+    return {
+      name: { type: String, reflect: true },
+      required: { type: Boolean, reflect: true },
+      value: { type: String }
+    };
+  }
+
   static get properties() {
     return {
       name: {},
@@ -23,18 +35,22 @@ export class DateTimeUTCInput extends LitElement {
     }
   }
 
+  constructor() {
+    super();
+    this.internals = this.attachInternals();
+  }
+
   inputChange(event) {
     const localDate = event.target.value;
     this.isoString = zonedTimeToUtc(localDate, Intl.DateTimeFormat().resolvedOptions().timeZone).toISOString();
+    this.internals.setFormValue(this.isoString);
   }
 
   render() {
     return html`
-      <input type="datetime-local" @input=${this.inputChange} value="${this.localDateString}"/>
-      <input type="hidden" name="${this.name}" value="${this.isoString}" />
+      <input part="input" type="datetime-local" @input=${this.inputChange} value="${this.localDateString}"/>
     `;
   }
-  createRenderRoot() { return this; }
 }
 
 customElements.define('datetime-utc-input', DateTimeUTCInput);

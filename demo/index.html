@@ -9,21 +9,23 @@
   </style>
 </head>
 <body>
-  <div id="demo"></div>
+  <form>
+    <label for="appointment_time">Appointment Time</label>
+    <datetime-utc-input name="appointment_time" required></datetime-utc-input>
+    <button type="submit">Submit</button>
+
+    <pre><output></output></pre>
+  </form>
 
   <script type="module">
-    import { html, render } from 'lit-html';
-    import '../datetime-elements.js';
+    import '../src/datetime-utc-input.js';
 
-    const title = 'Hello owc World!';
-    render(
-      html`
-        <datetime-elements .title=${title}>
-          some more light-dom
-        </datetime-elements>
-      `,
-      document.querySelector('#demo')
-    );
+    const form = document.querySelector("form");
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      formData.forEach((value, key) => console.log(`${key}: ${value}`));
+    });
   </script>
 </body>
 </html>
