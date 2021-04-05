@@ -1,6 +1,6 @@
 ## datetime-utc-elements
 
-### UPDATE: version 0.0.3 now uses a form associated custom element
+### UPDATE: version 0.0.4 now uses a form associated custom element
 
 You will need to use [this polyfill](https://www.npmjs.com/package/element-internals-polyfill) if your browser does not support the [ElementInternals API](https://html.spec.whatwg.org/multipage/custom-elements.html#element-internals). If this is not to your liking, use version 0.0.2 which uses a hidden input instead.
 
@@ -18,7 +18,7 @@ Two custom elements work together to implement our solution:
 
 This is a custom element which renders a datetime-local input and uses the [ElementInternals API](https://html.spec.whatwg.org/multipage/custom-elements.html#element-internals) to set the form value with the date as UTC. It takes 2 attributes:
 
-* name - used as the name attribute for the hidden field
+* name - used to set form value
 * value - an initial value, if desired, in ISO format
 
 ### `<datetime-utc-output>`

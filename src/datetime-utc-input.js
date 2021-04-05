@@ -12,26 +12,15 @@ export class DateTimeUTCInput extends LitElement {
     return {
       name: { type: String, reflect: true },
       required: { type: Boolean, reflect: true },
-      value: { type: String }
+      value: { type: String, reflect: true }
     };
   }
 
-  static get properties() {
-    return {
-      name: {},
-      value: {},
-      isoString: { attribute: false },
-      localDateString: { attribute: false }
-    };
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
+  get localDateString() {
     if (this.value) {
-      this.isoString = this.value;
-      const localDate = format(parseISO(this.isoString), 'yyyy-MM-dd');
-      const localTime = format(parseISO(this.isoString), 'HH:mm:ss');
-      this.localDateString = `${localDate}T${localTime}`;
+      const localDate = format(parseISO(this.value), 'yyyy-MM-dd');
+      const localTime = format(parseISO(this.value), 'HH:mm:ss');
+      return `${localDate}T${localTime}`;
     }
   }
 
@@ -42,8 +31,12 @@ export class DateTimeUTCInput extends LitElement {
 
   inputChange(event) {
     const localDate = event.target.value;
-    this.isoString = zonedTimeToUtc(localDate, Intl.DateTimeFormat().resolvedOptions().timeZone).toISOString();
-    this.internals.setFormValue(this.isoString);
+    this.value = zonedTimeToUtc(localDate, Intl.DateTimeFormat().resolvedOptions().timeZone).toISOString();
+  }
+
+  update(changedProperties) {
+    super.update(changedProperties);
+    this.internals.setFormValue(this.value);
   }
 
   render() {
