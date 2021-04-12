@@ -61,4 +61,28 @@ describe('time-output', () => {
     const datetimeLocalInput = el.shadowRoot.querySelector('input[type="datetime-local"]');
     expect(datetimeLocalInput.value).to.equal(localTime);
   });
+
+  describe('validation', async () => {
+    it('checks required validation', async () => {
+      const el = await fixture(`
+        <form>
+          <label for="appointment_time">Appointment Time</label>
+          <datetime-utc-input name="appointment_time" required value="${utcTime.toISOString()}"></datetime-utc-input>
+          <button type="submit">Submit</button>
+        </form>
+      `);
+      const datetimeUtcInput = el.querySelector('datetime-utc-input');
+      const datetimeLocalInput = datetimeUtcInput.shadowRoot.querySelector('input[type="datetime-local"]');
+      expect(el.checkValidity()).to.be.true;
+      datetimeLocalInput.value = '';
+      const event = new Event('input', {
+        bubbles: true,
+        cancelable: true,
+      });
+      datetimeLocalInput.dispatchEvent(event);
+      await el.updateComplete;
+      expect(el.checkValidity()).to.be.false;
+      expect(datetimeUtcInput.validity.valueMissing).to.be.true;
+    });
+  });
 });

@@ -1,31 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
-<head>
-  <meta charset="utf-8">
-  <style>
-    body {
-      background: #fafafa;
-    }
-  </style>
-</head>
-<body>
-  <form>
-    <label for="appointment_time">Appointment Time</label>
-    <datetime-utc-input name="appointment_time" required></datetime-utc-input>
-    <button type="submit">Submit</button>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        background: #fafafa;
+      }
+      input:invalid,
+      datetime-utc-input:invalid::part(input) {
+        border: 2px dashed red;
+      }
+      datetime-utc-input:valid + .error-message {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="name">Name</label>
+        <input name="name" required />
+      </div>
+      <div>
+        <label for="appointment_time">Appointment Time</label>
+        <datetime-utc-input
+          name="appointment_time"
+          required
+        ></datetime-utc-input>
+        <span class="error-message">Hey its no good</span>
+      </div>
+      <div>
+        <label for="other_time">Other Time</label>
+        <datetime-utc-input
+          name="other_time"
+        ></datetime-utc-input>
+      </div>
+      <div>
+        <label for="oldskool_time">Regulare Ole Time</label>
+        <input type="datetime-local" name="oldskool_time" required />
+      </div>
+      <button type="submit">Submit</button>
 
-    <pre><output></output></pre>
-  </form>
+      <pre><output></output></pre>
+    </form>
 
-  <script type="module">
-    import '../src/datetime-utc-input.js';
+    <script type="module">
+      import "../src/datetime-utc-input.js";
 
-    const form = document.querySelector("form");
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
-      formData.forEach((value, key) => console.log(`${key}: ${value}`));
-    });
-  </script>
-</body>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        formData.forEach((value, key) => console.log(`${key}: ${value}`));
+      });
+    </script>
+  </body>
 </html>

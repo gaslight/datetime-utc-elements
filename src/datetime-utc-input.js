@@ -31,13 +31,28 @@ export class DateTimeUTCInput extends LitElement {
 
   inputChange(event) {
     const localDate = event.target.value;
-    this.value = zonedTimeToUtc(localDate, Intl.DateTimeFormat().resolvedOptions().timeZone).toISOString();
+    if (localDate) {
+      this.value = zonedTimeToUtc(localDate, Intl.DateTimeFormat().resolvedOptions().timeZone).toISOString();
+    } else {
+      this.value = '';
+    }
   }
 
-  update(changedProperties) {
-    super.update(changedProperties);
+  updated(changedProperties) {
+    super.updated(changedProperties);
     this.internals.setFormValue(this.value);
+    this.validate();
   }
+
+  validate() {
+    if (this.required && !this.value) {
+      this.internals.setValidity({ valueMissing: true }, 'You need this', this.shadowRoot.querySelector('input'));
+    } else {
+      this.internals.setValidity({});
+    }
+  }
+
+  get validity() { return this.internals.validity; }
 
   render() {
     return html`
