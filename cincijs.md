@@ -9,11 +9,11 @@ It's about time...
 # Our problem
 * That ancient developer nemesis: timezones
 * Q: Does anybody really know what time it is?
-* A: the browser does
+* A: [the browser does](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
 
 ---
 
-# What do?
+# What do we want?
 * User sees local time
 * Server sees UTC
 * (this bullet point intentionally left blank)
@@ -27,11 +27,15 @@ It's about time...
 
 ---
 
-# datetime-input version 0.0.1
+# datetime-input version 0.0.2
 * datetime-local input
 * hidden field for UTC
 * keep em in sync
 * worked like champ
+
+---
+
+# Let's see
 
 ---
 
@@ -64,10 +68,6 @@ It's about time...
 ---
 
 # Let's see it!
-
----
-
-# `form.elements`
 
 ---
 
