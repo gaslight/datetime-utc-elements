@@ -1,6 +1,7 @@
 ## datetime-utc-elements
 
 ### UPDATE: version 0.0.4 now uses a form associated custom element
+### UPDATED UPDATE: version 0.0.5 now includes <date-and-time-utc-input> for when you want to separate date and time
 
 You will need to use [this polyfill](https://www.npmjs.com/package/element-internals-polyfill) if your browser does not support the [ElementInternals API](https://html.spec.whatwg.org/multipage/custom-elements.html#element-internals). If this is not to your liking, use version 0.0.2 which uses a hidden input instead.
 
@@ -21,12 +22,23 @@ This is a custom element which renders a datetime-local input and uses the [Elem
 * name - used to set form value
 * value - an initial value, if desired, in ISO format
 
+### `<date-and-time-utc-input>`
+
+The same as `<datetime-utc-input>` but renders as separate date and time inputs. Both will display and expect input in local timezone. Same attributes as `<datetime-utc-input>`. 
+
 ### `<datetime-utc-output>`
 
 This element is responsible for taking a UTC datetime and displaying it in the browser timezone. It takes 2 attributes as well:
 
 * datetime - string in ISO format
 * format - string specifying format. Uses the format specified in `date-fns` here.
+
+## Styling
+
+Both input elements expose shadow parts to let you style the internal input(s) in the spoooky Shadow DOM.
+
+`<datetime-utc-input>` gives you an `input` part.
+`<date-and-time-utc-input>` gives you `date-input` and `time-input` parts.
 
 ### Usage
 

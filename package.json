@@ -1,6 +1,6 @@
 {
   "name": "datetime-utc-elements",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "UTC on the server. Local time on the browser. Time is relative",
   "author": "Chris Nelson",
   "license": "MIT",

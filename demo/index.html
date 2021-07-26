@@ -16,7 +16,7 @@
     </style>
   </head>
   <body>
-    <form>
+    <form novalidate>
       <div>
         <label for="name">Name</label>
         <input name="name" required />
@@ -39,6 +39,10 @@
         <label for="oldskool_time">Regulare Ole Time</label>
         <input type="datetime-local" name="oldskool_time" required />
       </div>
+      <div>
+        <label for="date_and_time">Gotta keep em separated</label>
+        <date-and-time-utc-input value="2021-07-12T11:05:00.000Z" name="date_and_time"></date-and-time-utc-input>
+      </div>
       <button type="submit">Submit</button>
 
       <pre><output></output></pre>
@@ -46,6 +50,7 @@
 
     <script type="module">
       import "../src/datetime-utc-input.js";
+      import "../src/date-and-time-utc-input.js";
 
       const form = document.querySelector("form");
       form.addEventListener("submit", (event) => {
